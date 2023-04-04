@@ -1,0 +1,33 @@
+.nav-container {
+  justify-content: space-between;
+  margin: 20px;
+  display: flex;
+}
+
+.nav-items > ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.nav-items > ul > li {
+  margin: 20px;
+  font-size: 1.2rem;
+}
+
+.card-container {
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.card {
+  width: 300px;
+  text-align: center;
+  border: 2px solid brown;
+  margin: 10px 20px;
+}
+
+.card > img {
+  width: 100%;
+}
+
+/*# sourceMappingURL=index.9e4c6fd2.css.map */
