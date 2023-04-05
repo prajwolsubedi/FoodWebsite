@@ -27474,6 +27474,20 @@ const Body = ()=>{
     _s();
     const [inputText, setInputText] = (0, _react.useState)("");
     const [restaurant, setRestaurant] = (0, _react.useState)((0, _constants.restaurantList));
+    //empty dependency array [] - onetime after the initial render.
+    // dependecy array[restaurant] = onetime after the initial reander and everytime the restaurant changes.
+    (0, _react.useEffect)(()=>{
+        //  API call
+        console.log("Inside the use Effect");
+        getRestaurants();
+    }, []);
+    console.log("render");
+    async function getRestaurants() {
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.2984413999999981&lng=77.99313599999999&page_type=DESKTOP_WEB_LISTING#");
+        const json = await data.json();
+        console.log(json);
+        setRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27482,27 +27496,33 @@ const Body = ()=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         placeholder: "Search",
                         value: inputText,
-                        onChange: (e)=>setInputText(e.target.value)
+                        onChange: (e)=>{
+                            setInputText(e.target.value);
+                        // setRestaurant(restaurantList)
+                        }
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 17,
+                        lineNumber: 37,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                         onClick: ()=>{
-                            if (inputText === "") setRestaurant((0, _constants.restaurantList));
-                            else setRestaurant(filterData(inputText, restaurant));
+                            // if (inputText === "") {
+                            //   setRestaurant(restaurantList);
+                            // } else {
+                            setRestaurant(filterData(inputText, restaurant));
+                        // }
                         },
                         children: "Search"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 22,
+                        lineNumber: 45,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 16,
+                lineNumber: 36,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27512,20 +27532,20 @@ const Body = ()=>{
                         key: restaurant.data.id,
                         __source: {
                             fileName: "src/components/Body.js",
-                            lineNumber: 36,
+                            lineNumber: 59,
                             columnNumber: 11
                         },
                         __self: undefined
                     }))
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 34,
+                lineNumber: 57,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(Body, "3dZ3W+RUNa6nzruMs97x4EtkMIo=");
+_s(Body, "dB4DQ6CXzIOGO+Iz6xH4Ii9h4K8=");
 _c = Body;
 exports.default = Body;
 var _c;
