@@ -1,11 +1,11 @@
-import { restaurantList } from "../constants.js";
 import RestaurantCard from "./RestaurantCard.js";
 import { useState, useEffect } from "react";
 import ShimmerUI from "./ShimmerUI.js";
 
 const filterData = (searchText, allRestaurant) => {
+  //if our restaurant list does not includes the text then we display the message item not found.
   return allRestaurant.filter((restaurant) =>
-    restaurant.data.name.includes(searchText)
+    restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
   );
 };
 
@@ -13,8 +13,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [allRestaurant, setAllRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-  //empty dependency array [] - onetime after the initial render.
-  // dependecy array[restaurant] = onetime after the initial reander and everytime the restaurant changes.
+
   useEffect(() => {
     getRestaurants();
   }, []);
@@ -24,12 +23,11 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.2984413999999981&lng=77.99313599999999&page_type=DESKTOP_WEB_LISTING#"
     );
     const json = await data.json();
-    //Yesto belama you have to do optional chaining because if there is not data it will break.
     setAllRestaurant(json?.data?.cards[2]?.data?.data?.cards);
     setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
   }
 
-  return allRestaurant.length === 0 || filteredRestaurant.length === 0 ? (
+  return allRestaurant?.length === 0 ? (
     <ShimmerUI />
   ) : (
     <>
@@ -52,12 +50,15 @@ const Body = () => {
           Submit
         </button>
       </div>
+
       <div className="card-container">
-        {filteredRestaurant.map((restaurant) => {
-          return (
+        {filteredRestaurant.length === 0 ? (
+          <h1>Item not found</h1>
+        ) : (
+          filteredRestaurant.map((restaurant) => (
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
-          );
-        })}
+          ))
+        )}
       </div>
     </>
   );
