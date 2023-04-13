@@ -15,6 +15,10 @@
 }
 
 
+.head-img{
+    width: 100px;
+}
+
 .card-container{
     display: flex;
     flex-wrap: wrap;
@@ -30,3 +34,18 @@
 .card > img{
     width: 100%;
 }
+
+.shimmer-card{
+    width: 300px;
+    height: 400px;
+    background-color: rgb(126, 133, 135);
+    border-radius: 10;
+    margin: 10px 20px;
+}
+
+
+.restaurant-menu{
+    display: flex;
+}
+
+
