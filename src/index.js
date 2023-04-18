@@ -8,11 +8,14 @@ import About from "./components/About.js";
 import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Profile from "./components/Profile"
+import Profile1 from "./components/ProfileClassComponent"
 const AppLayout = () => {
   return (
     <>
       <Navbar />
       <Outlet />
+      <Footer />
     </>
   );
 };
@@ -30,6 +33,12 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+        // children:[
+        //   {
+        //     path: "profile",
+        //     element: <Profile1 />
+        //   }
+        // ]
       },
       {
         path: "/contact",
