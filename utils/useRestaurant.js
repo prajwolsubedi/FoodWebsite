@@ -14,12 +14,12 @@ const useRestaurant = (setFilteredRestaurant) => {
       setAllRestaurant(json?.data?.cards[2]?.data?.data?.cards);
       setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
     } catch (error) {
-      console.log(error, "mero ho hai");
+      console.log(error, "Error while fetching the restaurant json api");
       setAllRestaurant([]);
       setFilteredRestaurant([]);
     }
   }
-  return { allRestaurant };
+  return  allRestaurant ;
 };
 
 export default useRestaurant;

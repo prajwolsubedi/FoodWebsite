@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useContext } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
@@ -10,20 +10,32 @@ import Error from "./components/Error.js";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import ShimmerUI from "./components/ShimmerUI";
+import UserContext from "../utils/UserContext";
+
 // import Instamart from "./components/Instamart";
 const Instamart = lazy(() => import("./components/Instamart"));
 
+
 //on demand loading garda react will try to load the component which code is not present currently so it will suspend the loading so first choti ma component load hudaina but after the js file is loaded we can go to the page
 const AppLayout = () => {
+  const [newUser, setNewUser] = useState({
+    newUser: {
+      name: "Prajwol",
+      email: "PrajwolSubedizzz@gmail.com",
+    },
+  });
+  const values = {...newUser,setNewUser}
+
   return (
     <>
+    <UserContext.Provider value={values}>
       <Navbar />
       <Outlet />
       <Footer />
-    </>
+     </UserContext.Provider>
+      </>
   );
 };
-
 const router = createBrowserRouter([
   {
     path: "/",
