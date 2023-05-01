@@ -11,10 +11,12 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import ShimmerUI from "./components/ShimmerUI";
 import UserContext from "../utils/UserContext";
+import { Provider } from "react-redux";
+import store from "../utils/store";
+import Cart from "./components/Cart";
 
 // import Instamart from "./components/Instamart";
 const Instamart = lazy(() => import("./components/Instamart"));
-
 
 //on demand loading garda react will try to load the component which code is not present currently so it will suspend the loading so first choti ma component load hudaina but after the js file is loaded we can go to the page
 const AppLayout = () => {
@@ -24,16 +26,17 @@ const AppLayout = () => {
       email: "PrajwolSubedizzz@gmail.com",
     },
   });
-  const values = {...newUser,setNewUser}
-
+  const values = { ...newUser, setNewUser };
+  
   return (
-    <>
-    <UserContext.Provider value={values}>
-      <Navbar />
-      <Outlet />
-      <Footer />
-     </UserContext.Provider>
-      </>
+    //You can provide this store only to the certain portion of the app also.
+    <Provider store={store}>
+      <UserContext.Provider value={values}>
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 const router = createBrowserRouter([
@@ -67,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/restaurant/:restaurantId",
