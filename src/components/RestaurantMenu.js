@@ -10,18 +10,16 @@ const RestaurantMenu = () => {
   const restaurantInfo = useRestaurantMenu(restaurantId);
   const dispatch = useDispatch();
   const addFoodItem = (item) => {
-    dispatch(addItem(item))
+    dispatch(addItem(item));
   };
-  const cartItem = useSelector(store => store.cart.items)
+  const cartItem = useSelector((store) => store.cart.items);
 
-  
   return !restaurantInfo ? (
     <ShimmerUI />
   ) : (
     <div className="flex m-2 p-2">
       <div className="m-2 p-2">
-        <h1>
-          Restaurant name :
+        <h1 className="font-bold">
           {restaurantInfo?.data?.cards[0]?.card?.card?.info?.name}
         </h1>
         <img
@@ -31,20 +29,35 @@ const RestaurantMenu = () => {
             restaurantInfo?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId
           }
         />
-        <h3>
+        {/* <h3>
           Price :
           {restaurantInfo?.data?.cards[0]?.card?.card?.info?.costForTwoMessage}
-        </h3>
+        </h3> */}
       </div>
 
-      <div className="m-2">
-        <h1>Menus</h1>
+      <div className="mt-9 ">
+        <h1 className="font-bold">Menus</h1>
         <ul>
           {restaurantInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards?.map(
             (item) => (
-              <li key={item?.card?.info?.id}>
+              <li key={item?.card?.info?.id} className="flex">
                 {item?.card?.info?.name}{" "}
-                <button className="m-2 p-1 bg-red-500 rounded-xl" onClick={() => addFoodItem(item)}>Add</button>
+                <button onClick={() => addFoodItem(item)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 hover:bg-black hover:text-white rounded-3xl transition-colors duration-300"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </button>
               </li>
             )
           )}
