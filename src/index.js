@@ -28,6 +28,8 @@ const AppLayout = () => {
   });
   const values = { ...newUser, setNewUser };
   
+
+
   return (
     //You can provide this store only to the certain portion of the app also.
     <Provider store={store}>

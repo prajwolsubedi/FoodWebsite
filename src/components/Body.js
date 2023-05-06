@@ -8,7 +8,6 @@ import useRestaurant from "../../utils/useRestaurant.js";
 import UserContext from "../../utils/UserContext.js";
 const Body = () => {
   const { newUser, setNewUser } = useContext(UserContext);
-  console.log(newUser, setNewUser);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const allRestaurant = useRestaurant(setFilteredRestaurant);
@@ -24,7 +23,6 @@ const Body = () => {
   ) : (
     <>
       <div className="p-5 bg-pink-50">
-        <h1>Search Bar</h1>
         <input
           className="border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 p-2 m-2 focus:bg-green-50"
           placeholder="Search"
@@ -43,7 +41,7 @@ const Body = () => {
         >
           Submit
         </button>
-        <input
+        {/* <input
           value={newUser.name}
           onChange={(e) =>
             setNewUser({
@@ -64,7 +62,7 @@ const Body = () => {
               },
             })
           }
-        />
+        /> */}
       </div>
 
       <div className="m-5 flex flex-wrap justify-between shadow-100">
