@@ -3,8 +3,7 @@ import { IMG_CDN_URL } from "../constants";
 import ShimmerUI from "./ShimmerUI";
 import useRestaurantMenu from "../../utils/useRestaurantMenu";
 import { addItem } from "../../utils/cartSlice";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const RestaurantMenu = () => {
   const { restaurantId } = useParams();
   const restaurantInfo = useRestaurantMenu(restaurantId);
@@ -12,7 +11,6 @@ const RestaurantMenu = () => {
   const addFoodItem = (item) => {
     dispatch(addItem(item));
   };
-  const cartItem = useSelector((store) => store.cart.items);
 
   return !restaurantInfo ? (
     <ShimmerUI />
@@ -29,10 +27,6 @@ const RestaurantMenu = () => {
             restaurantInfo?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId
           }
         />
-        {/* <h3>
-          Price :
-          {restaurantInfo?.data?.cards[0]?.card?.card?.info?.costForTwoMessage}
-        </h3> */}
       </div>
 
       <div className="mt-9 ">
