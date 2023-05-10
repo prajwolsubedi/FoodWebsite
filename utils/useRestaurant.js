@@ -12,10 +12,10 @@ const useRestaurant = (setFilteredRestaurant) => {
       const data = await fetch(REST_URL);
       const json = await data.json();
       if (json?.data?.cards[2]?.data?.data?.cards) {
-        setAllRestaurant(json.data.cards[2].data.data.cards);
+        setAllRestaurant(json?.data?.cards[2]?.data?.data?.cards);
         setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
       } else if (json?.data?.cards[1]?.data?.data?.cards) {
-        setAllRestaurant(json.data.cards[1].data.data.cards);
+        setAllRestaurant(json?.data?.cards[1]?.data?.data?.cards);
         setFilteredRestaurant(json?.data?.cards[1]?.data?.data?.cards);
       }
       // setAllRestaurant(json?.data?.cards[2]?.data?.data?.cards);
